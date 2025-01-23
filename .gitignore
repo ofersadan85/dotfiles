@@ -11,4 +11,5 @@
 !nano/
 !zsh/
 zsh/.zsh_history
+!gnupg/
 
