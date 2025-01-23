@@ -1,0 +1,14 @@
+*/
+.session.vim
+
+!home/
+!tmux/
+!tealdeer/
+!nvim/
+!nvim/**/*
+!lsd/
+!pip/
+!nano/
+!zsh/
+zsh/.zsh_history
+

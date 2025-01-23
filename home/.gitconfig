@@ -1,0 +1,15 @@
+[pull]
+    ff = only
+	rebase = false
+[format]
+	signoff = true
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
+[user]
+    signingkey = D3CC5A5FA79185DE32D6AD63A92DF6E22ACEDD4F
+    name = Ofer Sadan
+	email = ofersadan85@gmail.com
+[help]
+	autocorrect = "immediate"

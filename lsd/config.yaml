@@ -1,0 +1,44 @@
+classic: false
+
+blocks:
+  - permission
+  - links
+  - user
+  - group
+  - size
+  - git
+  - date
+  - name
+
+color:
+  when: auto
+  theme: default
+
+date: date
+dereference: false
+display: almost-all
+
+icons:
+  when: auto
+  theme: fancy
+  separator: " "
+
+ignore-globs:
+  - .git
+  - NTUSER*.DAT
+
+layout: grid
+size: default
+permission: rwx
+
+sorting:
+  column: name
+  reverse: false
+  dir-grouping: first
+
+no-symlink: false
+total-size: false
+hyperlink: never
+
+symlink-arrow: ⇒
+header: false
