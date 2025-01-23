@@ -2,8 +2,10 @@
 
 set -e
 
+SCRIPT_DIR=$(dirname "${0}")
+
 dir_link() {
-    SRC_DIR="${1}"
+    SRC_DIR="${SCRIPT_DIR}/${1}"
     DST_DIR="${2:-${HOME}}"
 
     for FILE in ${SRC_DIR}/.*; do
