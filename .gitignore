@@ -11,5 +11,6 @@
 !nano/
 !zsh/
 zsh/.zsh_history
+zsh/.zcompdump
 !gnupg/
 

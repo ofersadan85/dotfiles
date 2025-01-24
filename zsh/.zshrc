@@ -57,5 +57,5 @@ if type -p zoxide &> /dev/null; then
 fi
 
 export NVIM_PATH="/opt/nvim-linux64/bin"
-[[ -d "${NVIM_PATH}/ ]] export PATH="$PATH:$NVIM_PATH" || echo "Neovim not installed, run `install_neovim`"
+[[ -d "${NVIM_PATH}" ]] && export PATH="$PATH:$NVIM_PATH" || echo "Neovim not installed, run `install_neovim`"
 
