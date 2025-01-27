@@ -9,7 +9,7 @@ alias update='
     && sudo apt autoclean'
 
 # Docker
-alias dcupdate="docker-compose pull && docker-compose up -d && docker system prune -f"
+alias dcupdate="docker compose pull && docker compose up -d && docker system prune -f"
 
 # SSH Info
 alias sshconfig='
@@ -35,6 +35,12 @@ if type -p lsd &> /dev/null; then
     alias ls="lsd"
     alias l="lsd -l"
 fi
+
 if type -p bat &> /dev/null; then
     alias cat="bat --paging=never"
 fi
+
+if type -p code-insiders &> /dev/null; then
+    alias code=code-insiders
+fi
+
