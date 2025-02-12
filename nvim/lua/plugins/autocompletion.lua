@@ -79,6 +79,7 @@ return { -- Autocompletion
         ['<C-Down>'] = cmp.mapping.select_next_item(), -- Select the [n]ext item
         ['<C-Up>'] = cmp.mapping.select_prev_item(), -- Select the [p]revious item
         ['<CR>'] = cmp.mapping.confirm { select = true }, -- Accept the completion with Enter.
+        ['<ESC>'] = cmp.mapping.abort(), -- Abort the completion
         ['<C-c>'] = cmp.mapping.complete {}, -- Manually trigger a completion from nvim-cmp.
 
         -- Think of <c-l> as moving to the right of your snippet expansion.
