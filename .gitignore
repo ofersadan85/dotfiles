@@ -9,6 +9,7 @@
 !lsd/
 !pip/
 !nano/
+!fastfetch/
 !zsh/
 zsh/.zsh_history
 zsh/.zcompdump
