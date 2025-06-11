@@ -13,11 +13,13 @@ tmux_auto_start() {
   fi
 }
 
+NEOVIM_FOLDER=nvim-linux-x86_64
 install_neovim() {
-  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+  NEOVIM_FILENAME="${NEOVIM_FOLDER}.tar.gz"
+  curl -LO "https://github.com/neovim/neovim/releases/latest/download/${NEOVIM_FILENAME}"
   sudo rm -rf /opt/nvim
-  sudo tar -C /opt -xzf nvim-linux64.tar.gz
-  rm nvim-linux64.tar.gz
+  sudo tar -C /opt -xzf "${NEOVIM_FILENAME}"
+  rm "${NEOVIM_FILENAME}"
 }
 
 plugins=(
@@ -56,6 +58,6 @@ if type -p zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
-export NVIM_PATH="/opt/nvim-linux64/bin"
-[[ -d "${NVIM_PATH}" ]] && export PATH="$PATH:$NVIM_PATH" || echo "Neovim not installed, run `install_neovim`"
+export NVIM_PATH="/opt/${NEOVIM_FOLDER}/bin"
+[[ -d "${NVIM_PATH}" ]] && export PATH="$PATH:$NVIM_PATH" || echo "Neovim not installed, run 'install_neovim'"
 
