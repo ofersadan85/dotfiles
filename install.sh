@@ -61,4 +61,8 @@ dir_link() {
 install_ohmyzsh
 dir_link "./zsh"
 dir_link "./home"
-dir_link "./gnupg" "${HOME}/.gnupg"
+
+GPG_FOLDER="${HOME}/.gnupg"
+mkdir -p "$GPG_FOLDER"
+chmod 700 "$GPG_FOLDER"
+dir_link "./gnupg" "$GPG_FOLDER"
