@@ -62,16 +62,21 @@ install_ohmyzsh
 dir_link "./zsh"
 dir_link "./home"
 
+# ~/.local/bin
+BIN_FOLDER="${HOME}/.local/bin"
+mkdir -p "${BIN_FOLDER}"
+dir_link "./bin" "${BIN_FOLDER}"
+
 # ~/.gnupg
 GPG_FOLDER="${HOME}/.gnupg"
-mkdir -p "$GPG_FOLDER"
-chmod 700 "$GPG_FOLDER"
-dir_link "./gnupg" "$GPG_FOLDER"
+mkdir -p "${GPG_FOLDER}"
+chmod 700 "${GPG_FOLDER}"
+dir_link "./gnupg" "${GPG_FOLDER}"
 
 # ~/.ssh
 SSH_FOLDER="${HOME}/.ssh"
 SSH_KEY_FILE="${SSH_FOLDER}/id_ed25519"
-if []; then
+if [ -f "${SSH_KEY_FILE}" ]; then
     echo "${SSH_KEY_FILE} already exists"
 else
     ssh-keygen -t ed25519 -N '' -f "${SSH_KEY_FILE}"

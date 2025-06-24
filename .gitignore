@@ -1,6 +1,7 @@
 */
 .session.vim
 
+!bin/
 !home/
 !tmux/
 !tealdeer/
