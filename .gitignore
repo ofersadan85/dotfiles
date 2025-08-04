@@ -15,4 +15,5 @@
 zsh/.zsh_history
 zsh/.zcompdump
 !gnupg/
+!ssh/
 
