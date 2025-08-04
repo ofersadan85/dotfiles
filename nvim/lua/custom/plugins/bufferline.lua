@@ -66,8 +66,8 @@ return {
 
     -- Keymaps
     -- local opts = { noremap = true, silent = true, desc = 'Go to Buffer' }
-    vim.keymap.set('n', '<leader>l', '<Cmd>BufferLineCycleNext<CR>', {})
-    vim.keymap.set('n', '<leader>h', '<Cmd>BufferLineCyclePrev<CR>', {})
+    -- vim.keymap.set('n', '<leader>l', '<Cmd>BufferLineCycleNext<CR>', {})
+    -- vim.keymap.set('n', '<leader>h', '<Cmd>BufferLineCyclePrev<CR>', {})
     -- vim.keymap.set('n', '<leader>1', "<cmd>lua require('bufferline').go_to_buffer(1)<CR>", opts)
     -- vim.keymap.set('n', '<leader>2', "<cmd>lua require('bufferline').go_to_buffer(2)<CR>", opts)
     -- vim.keymap.set('n', '<leader>3', "<cmd>lua require('bufferline').go_to_buffer(3)<CR>", opts)
