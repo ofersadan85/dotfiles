@@ -44,6 +44,7 @@ plugins=(
   sudo
   systemadmin
   systemd
+  uv
   web-search
   zsh-autosuggestions
   zsh-completions
