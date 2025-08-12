@@ -56,6 +56,8 @@ dir_link() {
   done
 }
 
+git -C "${SCRIPT_DIR}" submodule init
+git -C "${SCRIPT_DIR}" submodule update
 install_ohmyzsh
 dir_link "./zsh"
 dir_link "./home"
