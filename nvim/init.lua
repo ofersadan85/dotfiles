@@ -127,6 +127,9 @@ if vim.fn.has 'win32' == 1 then
   
   -- Windows path handling
   vim.o.shellslash = true
+  
+  -- Better line ending handling on Windows
+  vim.o.fileformats = 'unix,dos'
 end
 
 -- [[ Basic Keymaps ]]

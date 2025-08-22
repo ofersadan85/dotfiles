@@ -27,9 +27,18 @@ local check_external_reqs = function()
   -- On Windows, check for common alternatives and provide installation guidance
   local is_windows = vim.fn.has 'win32' == 1
   
+  -- Helper function to check executable with Windows .exe extension fallback
+  local function check_executable(exe)
+    if vim.fn.executable(exe) == 1 then
+      return true
+    elseif is_windows and vim.fn.executable(exe .. '.exe') == 1 then
+      return true
+    end
+    return false
+  end
+  
   for _, exe in ipairs(required_tools) do
-    local is_executable = vim.fn.executable(exe) == 1
-    if is_executable then
+    if check_executable(exe) then
       vim.health.ok(string.format("Found executable: '%s'", exe))
     else
       if is_windows then
@@ -49,8 +58,7 @@ local check_external_reqs = function()
   
   -- Check optional tools
   for _, exe in ipairs(optional_tools) do
-    local is_executable = vim.fn.executable(exe) == 1
-    if is_executable then
+    if check_executable(exe) then
       vim.health.ok(string.format("Found executable: '%s'", exe))
     else
       if is_windows then
