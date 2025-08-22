@@ -37,7 +37,28 @@ vim.o.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+  -- On Windows, ensure proper clipboard handling
+  if vim.fn.has 'win32' == 1 then
+    -- Windows-specific clipboard settings
+    if vim.fn.executable 'win32yank.exe' == 1 then
+      vim.g.clipboard = {
+        name = 'win32yank',
+        copy = {
+          ['+'] = 'win32yank.exe -i --crlf',
+          ['*'] = 'win32yank.exe -i --crlf',
+        },
+        paste = {
+          ['+'] = 'win32yank.exe -o --lf',
+          ['*'] = 'win32yank.exe -o --lf',
+        },
+        cache_enabled = 0,
+      }
+    else
+      vim.o.clipboard = 'unnamedplus'
+    end
+  else
+    vim.o.clipboard = 'unnamedplus'
+  end
 end)
 
 -- Save undo history
@@ -84,6 +105,29 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+-- Windows-specific configuration
+if vim.fn.has 'win32' == 1 then
+  -- Use PowerShell as the default shell on Windows if available
+  if vim.fn.executable 'pwsh' == 1 then
+    vim.o.shell = 'pwsh'
+    vim.o.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[\'Out-File:Encoding\']=\'utf8\';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+    vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+    vim.o.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
+    vim.o.shellquote = ''
+    vim.o.shellxquote = ''
+  elseif vim.fn.executable 'powershell' == 1 then
+    vim.o.shell = 'powershell'
+    vim.o.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[\'Out-File:Encoding\']=\'utf8\';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+    vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+    vim.o.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
+    vim.o.shellquote = ''
+    vim.o.shellxquote = ''
+  end
+  
+  -- Windows path handling
+  vim.o.shellslash = true
+end
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
