@@ -1,4 +1,8 @@
 #/bin/sh
+#
+# Dotfiles installation script for Linux/macOS
+# For Windows, use install.ps1 instead
+#
 
 set -e
 
