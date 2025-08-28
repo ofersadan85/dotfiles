@@ -1,19 +1,15 @@
-*/
+bottom/
+fastapi-cli/
+htop/
+lazygit/
+rclone/
+systemd/
+uv/
+
 .session.vim
 
-!bin/
-!home/
-!tmux/
-!tealdeer/
-!nvim/
-!nvim/**/*
-!lsd/
-!pip/
-!nano/
-!fastfetch/
-!zsh/
-zsh/.zsh_history
+tmux/plugins/
+
 zsh/.zcompdump
-!gnupg/
-!ssh/
+zsh/.zsh_history
 

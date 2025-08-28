@@ -1,0 +1,16 @@
+.git  # For .dockerignore compatability
+bottom
+fastapi-cli
+htop
+lazygit
+rclone
+systemd
+uv
+
+.session.vim
+
+tmux/plugins/
+
+zsh/.zcompdump
+zsh/.zsh_history
+
