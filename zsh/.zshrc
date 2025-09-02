@@ -62,3 +62,7 @@ fi
 export NVIM_PATH="/opt/${NEOVIM_FOLDER}/bin"
 [[ -d "${NVIM_PATH}" ]] && export PATH="$PATH:$NVIM_PATH" || echo "Neovim not installed, run 'install_neovim'"
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
