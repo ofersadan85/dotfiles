@@ -1,5 +1,5 @@
-# Dotfiles
-alias dotfiles='git --git-dir="${HOME}/.dotfiles" --work-tree="${HOME}"'
+alias lzg=lazygit
+alias lzd=lazydocker
 
 # Updates
 alias update='
@@ -34,6 +34,11 @@ alias qrssh="sshconfig | qr"
 if type -p lsd &> /dev/null; then
     alias ls="lsd"
     alias l="lsd -l"
+fi
+
+if type -p batcat &> /dev/null; then
+    alias cat="batcat --paging=never"
+    export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | batcat -p -lman'"
 fi
 
 if type -p bat &> /dev/null; then
