@@ -34,9 +34,24 @@ export RUST_BACKTRACE=1
 export PYTHONPYCACHEPREFIX="${HOME}/.cache/pycache"
 
 # NVM
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Neovim
+NEOVIM_FOLDER=nvim-linux-x86_64
+install_neovim() {
+  NEOVIM_FILENAME="${NEOVIM_FOLDER}.tar.gz"
+  curl -LO "https://github.com/neovim/neovim/releases/latest/download/${NEOVIM_FILENAME}"
+  sudo rm -rf /opt/nvim
+  sudo tar -C /opt -xzf "${NEOVIM_FILENAME}"
+  rm "${NEOVIM_FILENAME}"
+}
+export NVIM_PATH="/opt/${NEOVIM_FOLDER}/bin"
+[[ -d "${NVIM_PATH}" ]] && export PATH="$PATH:$NVIM_PATH"
+
+# Misc
+[[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:$PATH"
 export TZ="Asia/Jerusalem"
 export EDITOR=nvim
 export GPG_TTY=$(tty)
