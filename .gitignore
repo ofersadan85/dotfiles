@@ -3,6 +3,7 @@ bottom/
 btop/
 fastapi-cli/
 htop/
+lazydocker/
 lazygit/
 rclone/
 systemd/
