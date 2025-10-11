@@ -36,6 +36,10 @@ if type -p lsd &> /dev/null; then
     alias l="lsd -l"
 fi
 
+if type -p fdfind &> /dev/null; then
+    alias fd="fdfind"
+fi
+
 if type -p batcat &> /dev/null; then
     alias cat="batcat --paging=never"
     export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | batcat -p -lman'"
