@@ -24,6 +24,7 @@ export HISTIGNORE="clear:bg:fg:cd:cd -:cd ..:exit:date:w:* --help:ls:l:ll:lll"
 # R = raw terminal characters (fixes git diff)
 #     see http://jugglingbits.wordpress.com/2010/03/24/a-better-less-playing-nice-with-git/
 export LESS="-F -X -R"
+export LESSHISTFILE="${HOME}/.cache/less/history"
 
 # Rust
 export CARGO_TARGET_DIR="${HOME}/.cargo/target"
