@@ -147,12 +147,27 @@ require('lazy').setup({
 
         -- `build` is used to run some command when the plugin is installed/updated.
         -- This is only run then, not every time Neovim starts up.
-        build = 'make',
+        build = function()
+          -- On Windows, try different build approaches
+          if vim.fn.has 'win32' == 1 then
+            -- Try cmake first (if available), then make, then fall back to pre-built
+            if vim.fn.executable 'cmake' == 1 then
+              return 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+            elseif vim.fn.executable 'make' == 1 then
+              return 'make'
+            else
+              -- On Windows without build tools, the plugin will fall back to Lua implementation
+              vim.notify('telescope-fzf-native: Build tools not found, using Lua fzf implementation', vim.log.levels.WARN)
+              return 'echo "Using Lua fallback - install cmake or make for better performance"'
+            end
+          else
+            return 'make'
+          end
+        end,
 
-        -- `cond` is a condition used to determine whether this plugin should be
-        -- installed and loaded.
+        -- Always load the plugin, it will fall back to Lua implementation if native build fails
         cond = function()
-          return vim.fn.executable 'make' == 1
+          return true
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
@@ -261,7 +276,22 @@ require('lazy').setup({
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'mason-org/mason.nvim', opts = {} },
+      { 'mason-org/mason.nvim', 
+        opts = {
+          -- On Windows, ensure proper handling of executables
+          pip = {
+            upgrade_pip = true,
+          },
+          ui = {
+            -- Ensure proper icon handling on Windows terminals
+            icons = {
+              package_installed = "✓",
+              package_pending = "➜",
+              package_uninstalled = "✗"
+            }
+          }
+        } 
+      },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
