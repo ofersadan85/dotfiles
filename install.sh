@@ -83,3 +83,5 @@ if [ -f "${SSH_KEY_FILE}" ]; then
 else
     ssh-keygen -t ed25519 -N '' -f "${SSH_KEY_FILE}"
 fi
+
+[[ -f ~/.cargo/config.toml ]] || mkdir -p ~/.cargo && ln -s "${SCRIPT_DIR}/cargo/config.toml" ~/.cargo/config.toml
