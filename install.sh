@@ -47,7 +47,7 @@ file_link() {
 dir_link() {
     SRC_DIR="${SCRIPT_DIR}/${1}"
     DST_DIR="${2:-${HOME}}"
-
+    [[ -d "${DST_DIR}" ]] || mkdir -p "${DST_DIR}"
     for FILE in ${SRC_DIR}/*; do
         file_link "${FILE}" "${DST_DIR}"
     done
@@ -62,6 +62,7 @@ git -C "${SCRIPT_DIR}" submodule update
 install_ohmyzsh
 dir_link "./zsh"
 dir_link "./home"
+dir_link "./cargo" "${HOME}/.cargo"
 
 # ~/.local/bin
 BIN_FOLDER="${HOME}/.local/bin"
@@ -83,5 +84,3 @@ if [ -f "${SSH_KEY_FILE}" ]; then
 else
     ssh-keygen -t ed25519 -N '' -f "${SSH_KEY_FILE}"
 fi
-
-[[ -f ~/.cargo/config.toml ]] || mkdir -p ~/.cargo && ln -s "${SCRIPT_DIR}/cargo/config.toml" ~/.cargo/config.toml

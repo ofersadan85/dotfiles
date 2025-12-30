@@ -1,0 +1,4 @@
+[favorites.something]
+description = "<optional description, visible with --list-favorites>"
+git = "https://github.com/ofersadan85/something"
+
