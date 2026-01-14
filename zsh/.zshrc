@@ -35,6 +35,7 @@ plugins=(
   sudo
   systemadmin
   systemd
+  tmux
   uv
   web-search
   zsh-autosuggestions
