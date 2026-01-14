@@ -11,7 +11,7 @@ return {
   },
   lazy = false,
   keys = {
-    { '\\', ':Neotree toggle position=left<CR>', silent = true, desc = 'NeoTree Toggle' },
+    { '\\', ':Neotree float<CR>', silent = true, desc = 'NeoTree Toggle' },
     { '<leader>ngs', ':Neotree float git_status<CR>', silent = true, desc = 'Neotree Open Git Status Window' },
   },
   opts = {
