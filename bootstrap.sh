@@ -15,6 +15,7 @@ sudo apt update && sudo apt install -y \
     python-is-python3 \
     ripgrep \
     sudo \
+    tmux \
     unzip \
     zoxide \
     zsh
