@@ -40,16 +40,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Neovim
-NEOVIM_FOLDER=nvim-linux-x86_64
 install_neovim() {
+  NEOVIM_FOLDER=nvim-linux-x86_64
   NEOVIM_FILENAME="${NEOVIM_FOLDER}.tar.gz"
   curl -LO "https://github.com/neovim/neovim/releases/latest/download/${NEOVIM_FILENAME}"
   sudo rm -rf /opt/nvim
   sudo tar -C /opt -xzf "${NEOVIM_FILENAME}"
+  sudo ln -s "/opt/{NEOVIM_FOLDER}/bin/nvim" /usr/local/bin
   rm "${NEOVIM_FILENAME}"
 }
-export NVIM_PATH="/opt/${NEOVIM_FOLDER}/bin"
-[[ -d "${NVIM_PATH}" ]] && export PATH="$PATH:$NVIM_PATH"
 
 # Misc
 [[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:$PATH"

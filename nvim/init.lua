@@ -85,6 +85,10 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Healthcheck session recommendation
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -112,5 +116,11 @@ vim.keymap.set('n', '<', '<<')
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Load more options / plugins
-require 'autocommands'
-require 'plugins'
+require("autocommands")
+require("plugins")
+require("plugins.telescope")
+require("plugins.which-key")
+require("plugins.bufferline")
+require("plugins.gitsigns")
+require("lsp")
+require("treesitter")
