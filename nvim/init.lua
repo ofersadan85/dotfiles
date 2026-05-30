@@ -114,3 +114,11 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- Load more options / plugins
 require 'autocommands'
 require 'plugins'
+require 'plugins.telescope'
+require 'plugins.which-key'
+require 'plugins.neo-tree'
+require 'plugins.mini'
+require 'plugins.bufferline'
+require 'plugins.gitsigns'
+require 'plugins.lazygit'
+
