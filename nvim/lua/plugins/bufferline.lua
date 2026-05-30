@@ -1,5 +1,3 @@
-vim.pack.add({ 'https://github.com/nvim-tree/nvim-web-devicons' })  -- Nerd Font icons (glyphs)
-vim.pack.add({ 'https://github.com/akinsho/bufferline.nvim' })
 require('bufferline').setup {
   options = {
     mode = 'buffers', -- set to "tabs" to only show tabpages instead

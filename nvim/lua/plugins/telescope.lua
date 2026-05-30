@@ -1,8 +1,3 @@
-vim.pack.add({ 'https://github.com/nvim-lua/plenary.nvim' })  -- General lua code for other plugins
-vim.pack.add({ 'https://github.com/nvim-telescope/telescope-fzf-native.nvim' })  -- FZF sorter for telescope
-vim.pack.add({ 'https://github.com/nvim-telescope/telescope-ui-select.nvim' })  -- Native nvim selections in telescope
-vim.pack.add({ 'https://github.com/nvim-tree/nvim-web-devicons' })  -- Nerd Font icons (glyphs)
-vim.pack.add({ 'https://github.com/nvim-telescope/telescope.nvim' })  -- Fuzzy find windows (files, lsp, etc.)
 require('telescope').setup {
   extensions = {
     ['ui-select'] = {
