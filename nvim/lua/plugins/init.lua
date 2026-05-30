@@ -103,7 +103,7 @@ require("neo-tree").setup({
     },
   },
 })
-vim.keymap.set("n", "\\", "Neotree float<CR>", { desc = "NeoTree Toggle" })
+vim.keymap.set("n", "\\", "<cmd>Neotree float<CR>", { desc = "NeoTree Toggle" })
 vim.keymap.set("n", "<leader>ngs", ":Neotree float git_status<CR>", { desc = "Neotree Open Git Status Window" })
 
 -- Better Around/Inside textobjects
