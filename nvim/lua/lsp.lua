@@ -1,6 +1,6 @@
 require("mason").setup()
 
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "[F]ormat Local buffer" })
 vim.keymap.set("n", "df", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 
@@ -12,15 +12,15 @@ capabilities = vim.tbl_deep_extend("force", capabilities, require("mini.completi
 vim.lsp.config("*", { capabilities = capabilities })
 
 vim.lsp.config("lua_ls", {
-    settings = {
-        Lua = {
-            diagnostics = { globals = { "vim" } },
-        },
+  settings = {
+    Lua = {
+      diagnostics = { globals = { "vim" } },
     },
+  },
 })
 
 vim.lsp.enable({
-    "lua_ls",
-    "marksman",
-    "rust_analyzer",
+  "lua_ls",
+  "rust_analyzer",
+  "ty",
 })
