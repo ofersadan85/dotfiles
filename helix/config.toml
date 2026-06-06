@@ -1,0 +1,48 @@
+theme = "ao"
+
+[editor]
+mouse = true
+line-number = "relative"
+cursorline = true
+true-color = true
+bufferline = "multiple"
+color-modes = true
+
+[editor.lsp]
+display-messages = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "warning"
+
+[keys.normal]
+C-s = ":w" # Maps Ctrl-s to the typable command :w which is an alias for :write (save file)
+"[" = { b = "@gp" }
+"]" = { b = "@gn" }
+"C-/" = "@<C-c>"
+C-g = [
+    ":write-all",
+    ":new",
+    ":insert-output lazygit",
+    ":buffer-close!",
+    ":redraw",
+    ":reloa-all"
+]
+
+[keys.insert]
+# Maps Ctrl-s to the typable comman :w which is an alias for :write (save file)
+C-s = ":w"
