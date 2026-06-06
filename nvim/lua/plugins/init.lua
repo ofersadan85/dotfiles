@@ -47,6 +47,8 @@ vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
   -- LSP installer for Neovim
   "https://github.com/mason-org/mason.nvim",
+  -- Bridge Mason packages and lspconfig server names
+  "https://github.com/mason-org/mason-lspconfig.nvim",
 })
 
 require("tokyonight").setup({
