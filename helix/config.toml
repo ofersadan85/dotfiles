@@ -40,7 +40,7 @@ C-g = [
     ":insert-output lazygit",
     ":buffer-close!",
     ":redraw",
-    ":reloa-all"
+    ":reload-all"
 ]
 
 [keys.insert]
