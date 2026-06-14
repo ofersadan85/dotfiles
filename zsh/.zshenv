@@ -46,7 +46,7 @@ install_neovim() {
   curl -LO "https://github.com/neovim/neovim/releases/latest/download/${NEOVIM_FILENAME}"
   sudo rm -rf /opt/nvim
   sudo tar -C /opt -xzf "${NEOVIM_FILENAME}"
-  sudo ln -s "/opt/{NEOVIM_FOLDER}/bin/nvim" /usr/local/bin
+  sudo ln -s "/opt/${NEOVIM_FOLDER}/bin/nvim" /usr/local/bin
   rm "${NEOVIM_FILENAME}"
 }
 
