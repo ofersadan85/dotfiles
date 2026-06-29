@@ -1,0 +1,120 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version: 2
+final_space: true
+auto_upgrade: true
+var:
+  cargo: ""
+  python: ""
+  node: ""
+  go: ""
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: os
+        style: plain
+        foreground: "#26C6DA"
+        template: "{{ if .WSL }}WSL at {{ end }}{{.Icon}} "
+
+      - type: session
+        style: plain
+        foreground: "#ffffff"
+        template: "{{ if .SSHSession }} {{ end }}{{ .UserName }}@{{ .HostName }}"
+
+      - type: path
+        style: plain
+        foreground: "#77E4F7"
+        template: " {{ path .Path .Location }} "
+        options:
+          style: short
+
+      - type: git
+        style: plain
+        foreground: "#FFE700"
+        templates_logic: join
+        templates:
+          - "{{ url .UpstreamIcon .UpstreamURL }}"
+          - "{{ .HEAD }}"
+          - "{{ .BranchStatus }}"
+          - "{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}"
+          - "{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}"
+          - "{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}"
+          - "{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} "
+        options:
+          fetch_status: true
+          fetch_upstream_icon: true
+
+  - type: prompt
+    alignment: right
+    segments:
+      - type: project
+        style: powerline
+        foreground: "#000000"
+        background: "#ffffff"
+        template: "{{ if .Error }}{{ .Error }}{{ else }}{{ if .Version }} {{.Version}}{{ end }} {{ index .Var .Type }} {{ if .Name }}{{ .Name }}{{ end }}{{ end }} "
+        background_templates:
+          - '{{ if eq .Type "python" }}#ffdd33{{ end }}'
+          - '{{ if eq .Type "node" }}#008888{{ end }}'
+          - '{{ if eq .Type "cargo" }}#ff6600{{ end }}'
+          - '{{ if eq .Type "go" }}#00add8{{ end }}'
+
+      - type: status
+        style: plain
+        foreground_templates:
+          - "{{ if .Error }}#ff0000{{ else }}#00ff00{{ end }}"
+        options:
+          status_template: "{{ if eq .Code 0 }}\uf00c{{ else }}\uf071 {{ reason .Code }}{{ .Code }}{{ end }}"
+
+      - type: sysinfo
+        style: plain
+        foreground: "#a0359f"
+        template: " \ue266 {{ round .PhysicalPercentUsed .Precision }}% "
+        options:
+          precision: 2.0
+
+      - type: time
+        style: plain
+        foreground: "#00C5C7"
+        template: "{{ .CurrentDate | date .Format }}"
+        options:
+          time_format: "15:04:05"
+
+      - type: battery
+        style: plain
+        foreground_templates:
+          - '{{if eq "Charging" .State.String}}#40c4ff{{end}}'
+          - '{{if eq "Discharging" .State.String}}#ff5722{{end}}'
+          - '{{if eq "Full" .State.String}}#4caf50{{end}}'
+        template: " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}\uf295 "
+        options:
+          charged_icon: "\ue22f "
+          charging_icon: "\ue234 "
+          discharging_icon: "\ue231 "
+
+      - type: executiontime
+        style: plain
+        foreground: "#ffafaf"
+        template: " \ueba2 {{ .FormattedMs }}"
+        options:
+          always_enabled: true
+          style: austin
+          threshold: 500.0
+
+      - type: connection
+        style: plain
+        foreground: "#8822ee"
+
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: text
+        style: plain
+        foreground: "#00FF00"
+        template: "❯"
+
+transient_prompt:
+  foreground_templates:
+    - "{{ if ne .Code 0 }}#FF0000{{ else }}#00FF00{{ end }}"
+  template: "❯ "

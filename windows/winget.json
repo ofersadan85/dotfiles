@@ -1,0 +1,69 @@
+{
+    "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
+    "Sources": [
+        {
+            "Packages": [
+                {
+                    "PackageIdentifier": "7zip.7zip"
+                },
+                {
+                    "PackageIdentifier": "GnuPG.GnuPG"
+                },
+                {
+                    "PackageIdentifier": "GnuPG.Gpg4win"
+                },
+                {
+                    "PackageIdentifier": "jqlang.jq"
+                },
+                {
+                    "PackageIdentifier": "CoreyButler.NVMforWindows"
+                },
+                {
+                    "PackageIdentifier": "Docker.DockerDesktop"
+                },
+                {
+                    "PackageIdentifier": "GitHub.cli"
+                },
+                {
+                    "PackageIdentifier": "Git.Git"
+                },
+                {
+                    "PackageIdentifier": "Neovim.Neovim"
+                },
+                {
+                    "PackageIdentifier": "Rustlang.Rustup"
+                },
+                {
+                    "PackageIdentifier": "Microsoft.VisualStudio.2022.BuildTools"
+                },
+                {
+                    "PackageIdentifier": "Microsoft.WindowsSDK.10.0.26100"
+                },
+                {
+                    "PackageIdentifier": "junegunn.fzf"
+                },
+                {
+                    "PackageIdentifier": "Microsoft.PowerShell"
+                },
+                {
+                    "PackageIdentifier": "Microsoft.VisualStudioCode.Insiders"
+                },
+                {
+                    "PackageIdentifier": "Microsoft.WindowsTerminal"
+                },
+                {
+                    "PackageIdentifier": "JanDeDobbeleer.OhMyPosh"
+                },
+                {
+                    "PackageIdentifier": "JesseDuffield.lazygit"
+                }
+            ],
+            "SourceDetails": {
+                "Argument": "https://cdn.winget.microsoft.com/cache",
+                "Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
+                "Name": "winget",
+                "Type": "Microsoft.PreIndexed.Package"
+            }
+        }
+    ]
+}
