@@ -11,7 +11,7 @@ fi
 export ZDOTDIR="$HOME/.config/zsh"
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 export DISABLE_UPDATE_PROMPT="true"
-export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/.zcompdump-$(hostname)-${ZSH_VERSION}"
+export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/.zcompdump-${ZSH_VERSION}"
 
 # History management
 export HISTCONTROL=ignoreboth
