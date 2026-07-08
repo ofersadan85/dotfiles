@@ -12,6 +12,11 @@ blocks:
   - type: prompt
     alignment: left
     segments:
+      - type: vimode
+        style: plain
+        foreground: "#0077c2"
+        template: '{{ if eq .Mode "normal" }} N{{ else if eq .Mode "visual" }} V{{ else }} I{{ end }} '
+
       - type: os
         style: plain
         foreground: "#26C6DA"
@@ -66,6 +71,14 @@ blocks:
         options:
           status_template: "{{ if eq .Code 0 }}\uf00c{{ else }}\uf071 {{ reason .Code }}{{ .Code }}{{ end }}"
 
+      - type: winget
+        style: plain
+        foreground: "#0077c2"
+        template: "  {{ .UpdateCount }}"
+        cache:
+          duration: 24h
+          strategy: device
+
       - type: sysinfo
         style: plain
         foreground: "#a0359f"
@@ -86,7 +99,7 @@ blocks:
           - '{{if eq "Charging" .State.String}}#40c4ff{{end}}'
           - '{{if eq "Discharging" .State.String}}#ff5722{{end}}'
           - '{{if eq "Full" .State.String}}#4caf50{{end}}'
-        template: " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}\uf295 "
+        template: " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}\uf295"
         options:
           charged_icon: "\ue22f "
           charging_icon: "\ue234 "

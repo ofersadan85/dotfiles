@@ -18,13 +18,8 @@ function WithTiming {
 ############################################
 # PSReadLine
 ############################################
-function OnViModeChange {
-    if ($args[0] -eq 'Command') { Write-Host -NoNewLine "`e[1 q" } # blinking block
-    else { Write-Host -NoNewLine "`e[5 q" } # blinking line
-}
 Set-PSReadLineOption `
     -EditMode Vi `
-    -ViModeIndicator Script -ViModeChangeHandler $Function:OnViModeChange `
     -MaximumHistoryCount 100kb `
     -PredictionSource HistoryAndPlugin
 
@@ -58,14 +53,13 @@ function cpwd { $PWD.Path | Set-Clipboard }
 ############################################
 # Completions & Initializations
 ############################################
-WithTiming { Import-Module DockerCompletion }
-WithTiming { Import-Module DockerComposeCompletion }
-WithTiming {
-    $omp_config = Join-Path -Path $PSScriptRoot -ChildPath "omp.yaml"
-    oh-my-posh init pwsh --config $omp_config | Invoke-Expression
-}
-WithTiming { if (which zoxide) { Invoke-Expression (& { (zoxide init powershell | Out-String) }) } }
-WithTiming { if (which rustup) { Invoke-Expression (& { (rustup completions powershell | Out-String) }) } }
+Import-Module DockerCompletion
+Import-Module DockerComposeCompletion
+$omp_config = Join-Path -Path $PSScriptRoot -ChildPath "omp.yaml"
+oh-my-posh init pwsh --config $omp_config | Invoke-Expression
+if (which zoxide) { Invoke-Expression (& { (zoxide init powershell | Out-String) }) }
+if (which rustup) { Invoke-Expression (& { (rustup completions powershell | Out-String) }) }
+if (which gh) { Invoke-Expression (gh completion --shell powershell | Out-String) }
 
 ############################################
 # Aliases
