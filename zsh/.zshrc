@@ -41,6 +41,7 @@ plugins=(
   zsh-autosuggestions
   zsh-completions
   zsh-syntax-highlighting
+  zsh-vi-mode
 )
 
 source "${HOME}/.oh-my-zsh/oh-my-zsh.sh"

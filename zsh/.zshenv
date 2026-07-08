@@ -41,11 +41,12 @@ export NVM_DIR="$HOME/.nvm"
 
 # Neovim
 install_neovim() {
-  NEOVIM_FOLDER=nvim-linux-x86_64
-  NEOVIM_FILENAME="${NEOVIM_FOLDER}.tar.gz"
+  local NEOVIM_FOLDER=nvim-linux-x86_64
+  local NEOVIM_FILENAME="${NEOVIM_FOLDER}.tar.gz"
   curl -LO "https://github.com/neovim/neovim/releases/latest/download/${NEOVIM_FILENAME}"
-  sudo rm -rf /opt/nvim
+  sudo rm -rf "/opt/${NEOVIM_FOLDER}"
   sudo tar -C /opt -xzf "${NEOVIM_FILENAME}"
+  sudo rm -f /usr/local/bin/nvim
   sudo ln -s "/opt/${NEOVIM_FOLDER}/bin/nvim" /usr/local/bin
   rm "${NEOVIM_FILENAME}"
 }

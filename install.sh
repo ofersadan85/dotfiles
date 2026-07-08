@@ -28,6 +28,7 @@ install_ohmyzsh() {
         echo "Installing oh-my-zsh at ${ZSH}"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
         git_clone_if_needed "${ZSH_THEMES}/powerlevel10k" https://github.com/romkatv/powerlevel10k.git
+        git_clone_if_needed "${ZSH_PLUGINS}/zsh-vi-mode" https://github.com/jeffreytse/zsh-vi-mode.git
         git_clone_if_needed "${ZSH_PLUGINS}/zsh-completions" https://github.com/zsh-users/zsh-completions.git
         git_clone_if_needed "${ZSH_PLUGINS}/zsh-autosuggestions" https://github.com/zsh-users/zsh-autosuggestions.git
         git_clone_if_needed "${ZSH_PLUGINS}/zsh-syntax-highlighting" https://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -47,7 +48,7 @@ file_link() {
 dir_link() {
     SRC_DIR="${SCRIPT_DIR}/${1}"
     DST_DIR="${2:-${HOME}}"
-    [[ -d "${DST_DIR}" ]] || mkdir -p "${DST_DIR}"
+    [ -d "${DST_DIR}" ] || mkdir -p "${DST_DIR}"
     for FILE in ${SRC_DIR}/*; do
         file_link "${FILE}" "${DST_DIR}"
     done
