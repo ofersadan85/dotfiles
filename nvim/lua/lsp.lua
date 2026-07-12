@@ -2,12 +2,12 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
-    "rust_analyzer",
     "pyright",
     "ruff",
+    "rust_analyzer",
     "ts_ls",
   },
-  automatic_enable = false,
+  automatic_enable = true,
 })
 
 local snippets = require("mini.snippets")
@@ -38,9 +38,6 @@ imap_expr("<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], "Completion next item
 imap_expr("<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], "Completion previous item")
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-vim.keymap.set("n", "<leader>f", function()
-  require("conform").format({ async = true, lsp_format = "fallback" })
-end, { desc = "[F]ormat Local buffer" })
 vim.keymap.set("n", "df", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Symbol documentation" }) -- Use <Ctrl-O>K in insert mode
 
@@ -48,7 +45,6 @@ vim.diagnostic.config({ virtual_text = true })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("mini.completion").get_lsp_capabilities())
-
 vim.lsp.config("*", { capabilities = capabilities })
 
 local function detect_project_venv_python(root_dir)
@@ -77,19 +73,6 @@ vim.lsp.config("lua_ls", {
   },
 })
 
-vim.lsp.config("pyright", {
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-        autoImportCompletions = true,
-        typeCheckingMode = "basic",
-      },
-    },
-  },
-})
-
 vim.lsp.config("rust_analyzer", {
   settings = {
     ["rust-analyzer"] = {
@@ -114,6 +97,7 @@ vim.lsp.config("rust_analyzer", {
 })
 
 vim.lsp.config("ruff", {})
+vim.lsp.config("ty", {})
 
 vim.lsp.config("ts_ls", {
   settings = {
@@ -142,12 +126,27 @@ vim.lsp.config("ts_ls", {
   },
 })
 
--- Set VIRTUAL_ENV automatically before LSP starts
+vim.lsp.config("pyright", {
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        autoImportCompletions = true,
+        typeCheckingMode = "basic",
+      },
+    },
+  },
+})
+
+-- Set VIRTUAL_ENV automatically before Python LSP starts
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
   callback = function(args)
     local root_dir = vim.fs.root(args.buf, { ".git", "pyproject.toml", "setup.py", "requirements.txt", ".venv", "venv", "env" })
-    if not root_dir then return end
+    if not root_dir then
+      return
+    end
 
     local python_path, venv_name = detect_project_venv_python(root_dir)
     if python_path then
@@ -162,13 +161,3 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Full ty config template (commented):
-vim.lsp.config("ty", {}) -- {
-
-vim.lsp.enable({
-  "lua_ls",
-  "rust_analyzer",
-  "pyright",
-  "ruff",
-  "ts_ls",
-})

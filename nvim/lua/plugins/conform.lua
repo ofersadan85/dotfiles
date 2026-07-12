@@ -1,16 +1,16 @@
 require("conform").setup({
   formatters_by_ft = {
-    lua = { "stylua" },
-    javascript = { "prettier" },
-    typescript = { "prettier" },
-    typescriptreact = { "prettier" },
-    javascriptreact = { "prettier" },
     css = { "prettier" },
     html = { "prettier" },
+    javascript = { "prettier" },
+    javascriptreact = { "prettier" },
     json = { "prettier" },
+    lua = { "stylua" },
     python = { "ruff_format", "ruff_organize_imports" },
     rust = { "rustfmt" },
     sh = { "shfmt" },
+    typescript = { "prettier" },
+    typescriptreact = { "prettier" },
   },
 
   formatters = {
@@ -26,3 +26,7 @@ require("conform").setup({
     },
   },
 })
+
+vim.keymap.set("n", "<leader>f", function()
+  require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "[F]ormat Local buffer" })
