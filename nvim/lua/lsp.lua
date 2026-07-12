@@ -66,7 +66,6 @@ local function detect_project_venv_python(root_dir)
       return python_path, venv_name
     end
   end
-
   return nil
 end
 
@@ -79,26 +78,9 @@ vim.lsp.config("lua_ls", {
 })
 
 vim.lsp.config("pyright", {
-  before_init = function(_, config)
-    local python_path, venv_name = detect_project_venv_python(config.root_dir)
-    if not python_path then
-      return
-    end
-
-    config.settings = vim.tbl_deep_extend("force", config.settings or {}, {
-      python = {
-        pythonPath = python_path,
-        venvPath = config.root_dir,
-        venv = venv_name,
-      },
-    })
-  end,
   settings = {
     python = {
       analysis = {
-        -- autoSearchPaths = true, -- default
-        -- useLibraryCodeForTypes = true, -- default
-        -- diagnosticMode = "openFilesOnly", -- default
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
         autoImportCompletions = true,
@@ -158,6 +140,26 @@ vim.lsp.config("ts_ls", {
       },
     },
   },
+})
+
+-- Set VIRTUAL_ENV automatically before LSP starts
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function(args)
+    local root_dir = vim.fs.root(args.buf, { ".git", "pyproject.toml", "setup.py", "requirements.txt", ".venv", "venv", "env" })
+    if not root_dir then return end
+
+    local python_path, venv_name = detect_project_venv_python(root_dir)
+    if python_path then
+      local venv_dir = vim.fs.joinpath(root_dir, venv_name)
+      if vim.env.VIRTUAL_ENV ~= venv_dir then
+        vim.env.VIRTUAL_ENV = venv_dir
+        local bin_dir = vim.fs.dirname(python_path)
+        local sep = (vim.fn.has("win32") == 1) and ";" or ":"
+        vim.env.PATH = bin_dir .. sep .. vim.env.PATH
+      end
+    end
+  end,
 })
 
 -- Full ty config template (commented):
