@@ -49,6 +49,12 @@ vim.pack.add({
   "https://github.com/mason-org/mason.nvim",
   -- Bridge Mason packages and lspconfig server names
   "https://github.com/mason-org/mason-lspconfig.nvim",
+  -- Formatter
+  "https://github.com/stevearc/conform.nvim",
+  -- Notification UI
+  "https://github.com/rcarriga/nvim-notify",
+  -- Modern UI for messages, cmdline and popupmenu
+  "https://github.com/folke/noice.nvim",
 })
 
 require("tokyonight").setup({
@@ -158,3 +164,6 @@ require('mini.move').setup({
     reindent_linewise = true,
   },
 })
+
+-- Highlight word under cursor
+require('mini.cursorword').setup()

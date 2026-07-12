@@ -4,7 +4,8 @@ require("mason-lspconfig").setup({
     "lua_ls",
     "rust_analyzer",
     "pyright",
-    -- "ty"
+    "ruff",
+    "ts_ls",
   },
   automatic_enable = false,
 })
@@ -37,7 +38,9 @@ imap_expr("<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], "Completion next item
 imap_expr("<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], "Completion previous item")
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "[F]ormat Local buffer" })
+vim.keymap.set("n", "<leader>f", function()
+  require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "[F]ormat Local buffer" })
 vim.keymap.set("n", "df", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Symbol documentation" }) -- Use <Ctrl-O>K in insert mode
 
@@ -123,6 +126,36 @@ vim.lsp.config("rust_analyzer", {
       },
       cargo = { allFeatures = true },
       procMacro = { enable = true },
+      checkOnSave = { command = "clippy" },
+    },
+  },
+})
+
+vim.lsp.config("ruff", {})
+
+vim.lsp.config("ts_ls", {
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
     },
   },
 })
@@ -134,5 +167,6 @@ vim.lsp.enable({
   "lua_ls",
   "rust_analyzer",
   "pyright",
-  -- "ty", -- uncomment and disable "pyright" above if you want ty instead
+  "ruff",
+  "ts_ls",
 })

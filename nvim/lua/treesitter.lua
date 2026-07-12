@@ -12,6 +12,11 @@ local ensure_installed = {
     "bash",
     "http",
     "dockerfile",
+    "lua",
+    "vim",
+    "vimdoc",
+    "markdown",
+    "markdown_inline",
 }
 
 treesitter.install(ensure_installed)
