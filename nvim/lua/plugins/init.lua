@@ -51,10 +51,6 @@ vim.pack.add({
   "https://github.com/mason-org/mason-lspconfig.nvim",
   -- Formatter
   "https://github.com/stevearc/conform.nvim",
-  -- Notification UI
-  "https://github.com/rcarriga/nvim-notify",
-  -- Modern UI for messages, cmdline and popupmenu
-  "https://github.com/folke/noice.nvim",
 })
 
 require("tokyonight").setup({
