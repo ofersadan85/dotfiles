@@ -83,26 +83,7 @@ function setup_extra_packages {
     # See https://github.com/cargo-bins/cargo-binstall#windows
     $binstall_url = "https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1"
     Set-ExecutionPolicy Unrestricted -Scope Process; Invoke-Expression (Invoke-WebRequest $binstall_url).Content
-    cargo binstall --no-confirm `
-        bat `
-        bottom `
-        cargo-binstall `
-        cargo-expand `
-        cargo-generate `
-        cargo-update `
-        du-dust `
-        fd-find `
-        hexyl `
-        just `
-        lsd `
-        prek `
-        ripgrep `
-        tealdeer `
-        tree-sitter-cli `
-        uv `
-        zoxide
-    cargo install-update cargo-binstall --force  # Bug fix: cargo-binstall contains removed executables (cargo-binstall)
-    
+
     ##############################################
     # Extra UV tools
     ##############################################
