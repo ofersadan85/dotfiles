@@ -49,8 +49,20 @@ vim.pack.add({
   "https://github.com/mason-org/mason.nvim",
   -- Bridge Mason packages and lspconfig server names
   "https://github.com/mason-org/mason-lspconfig.nvim",
+  -- Auto-install formatters/linters via Mason
+  "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
   -- Formatter
   "https://github.com/stevearc/conform.nvim",
+  -- nvim-nio required by neotest
+  "https://github.com/nvim-neotest/nvim-nio",
+  -- Neotest framework
+  "https://github.com/nvim-neotest/neotest",
+  -- Neotest Python adapter
+  "https://github.com/nvim-neotest/neotest-python",
+  -- Neotest Rust adapter
+  "https://github.com/rouge8/neotest-rust",
+  -- Neotest Vitest adapter (TypeScript)
+  "https://github.com/marilari88/neotest-vitest",
 })
 
 require("tokyonight").setup({
@@ -58,6 +70,7 @@ require("tokyonight").setup({
 })
 vim.cmd.colorscheme("tokyonight-moon")
 require("auto-session").setup({})
+require("guess-indent").setup({})
 require("Comment").setup({
   -- Ctrl + _ is often the same as Ctrl + / in terminals
   -- So we set <C-_> to get <C-/>

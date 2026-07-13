@@ -1,6 +1,7 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
+    "bashls",
     "lua_ls",
     "pyright",
     "ruff",
@@ -8,6 +9,17 @@ require("mason-lspconfig").setup({
     "ts_ls",
   },
   automatic_enable = true,
+})
+
+-- Auto-install formatters and linters via Mason
+require("mason-tool-installer").setup({
+  ensure_installed = {
+    "stylua",
+    "prettier",
+    "shfmt",
+  },
+  auto_update = false,
+  run_on_start = true,
 })
 
 local snippets = require("mini.snippets")
@@ -38,8 +50,19 @@ imap_expr("<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], "Completion next item
 imap_expr("<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], "Completion previous item")
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "List references" })
+vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
 vim.keymap.set("n", "df", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Symbol documentation" }) -- Use <Ctrl-O>K in insert mode
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame symbol" })
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+vim.keymap.set("n", "<leader>ti", function()
+  local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+  vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
+  vim.notify("Inlay hints " .. (enabled and "disabled" or "enabled"))
+end, { desc = "[T]oggle [I]nlay Hints" })
 
 vim.diagnostic.config({ virtual_text = true })
 
@@ -139,7 +162,7 @@ vim.lsp.config("pyright", {
   },
 })
 
--- Set VIRTUAL_ENV automatically before Python LSP starts
+-- Set VIRTUAL_ENV automatically when opening a Python file, and inform pyright of the venv's python
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
   callback = function(args)
@@ -157,7 +180,14 @@ vim.api.nvim_create_autocmd("FileType", {
         local sep = (vim.fn.has("win32") == 1) and ";" or ":"
         vim.env.PATH = bin_dir .. sep .. vim.env.PATH
       end
+      -- Inform pyright of the exact interpreter so it resolves venv packages correctly
+      vim.lsp.config("pyright", {
+        settings = {
+          python = {
+            pythonPath = python_path,
+          },
+        },
+      })
     end
   end,
 })
-

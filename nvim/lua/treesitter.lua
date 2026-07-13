@@ -13,10 +13,12 @@ treesitter.install({
   "markdown_inline",
   "python",
   "rust",
+  "toml",
   "tsx",
   "typescript",
   "vim",
   "vimdoc",
+  "yaml",
 })
 
 vim.api.nvim_create_autocmd("FileType", {

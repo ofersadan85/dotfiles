@@ -9,8 +9,10 @@ require("conform").setup({
     python = { "ruff_format", "ruff_organize_imports" },
     rust = { "rustfmt" },
     sh = { "shfmt" },
+    toml = { "prettier" },
     typescript = { "prettier" },
     typescriptreact = { "prettier" },
+    yaml = { "prettier" },
   },
 
   formatters = {

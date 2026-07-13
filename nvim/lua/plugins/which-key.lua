@@ -45,5 +45,9 @@ require("which-key").setup({
     { "<leader>t", group = "[T]oggle" },
     { "<leader>b", group = "[B]ufferLine" },
     { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+    { "<leader>c", group = "[C]ode" },
+    { "<leader>r", group = "[R]ename / [R]efactor" },
+    { "<leader>n", group = "[N]eotest" },
+    { "<leader>x", group = "Te[x]tobjects / Swap" },
   },
 })
