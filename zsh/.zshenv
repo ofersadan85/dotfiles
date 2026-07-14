@@ -29,7 +29,6 @@ export LESSHISTFILE="${HOME}/.cache/less/history"
 # Rust
 export CARGO_TARGET_DIR="${HOME}/.cargo/target"
 export CARGO_INCREMENTAL=1
-export RUST_BACKTRACE=1
 
 # Python
 export PYTHONPYCACHEPREFIX="${HOME}/.cache/pycache"
