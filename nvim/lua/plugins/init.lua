@@ -53,16 +53,6 @@ vim.pack.add({
   "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
   -- Formatter
   "https://github.com/stevearc/conform.nvim",
-  -- nvim-nio required by neotest
-  "https://github.com/nvim-neotest/nvim-nio",
-  -- Neotest framework
-  "https://github.com/nvim-neotest/neotest",
-  -- Neotest Python adapter
-  "https://github.com/nvim-neotest/neotest-python",
-  -- Neotest Rust adapter
-  "https://github.com/rouge8/neotest-rust",
-  -- Neotest Vitest adapter (TypeScript)
-  "https://github.com/marilari88/neotest-vitest",
 })
 
 require("tokyonight").setup({
