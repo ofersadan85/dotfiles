@@ -52,6 +52,7 @@ install_neovim() {
 
 # Misc
 [[ -d "${HOME}/.local/bin" ]] && export PATH="${HOME}/.local/bin:$PATH"
+export MAGIC_ENTER_GIT_COMMAND='git status --short --branch --untracked .'
 export TZ="Asia/Jerusalem"
 export EDITOR=nvim
 export GPG_TTY=$(tty)
