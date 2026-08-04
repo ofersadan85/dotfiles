@@ -54,10 +54,7 @@ function cpwd { $PWD.Path | Set-Clipboard }
 ############################################
 # Completions & Initializations
 ############################################
-Import-Module DockerCompletion
-Import-Module DockerComposeCompletion
-$omp_config = Join-Path -Path $PSScriptRoot -ChildPath "omp.yaml"
-oh-my-posh init pwsh --config $omp_config | Invoke-Expression
+if (which starship) { Invoke-Expression (&starship init powershell) }
 if (which zoxide) { Invoke-Expression (& { (zoxide init powershell | Out-String) }) }
 if (which rustup) { Invoke-Expression (& { (rustup completions powershell | Out-String) }) }
 if (which gh) { Invoke-Expression (gh completion --shell powershell | Out-String) }

@@ -13,40 +13,11 @@ tmux_auto_start() {
   fi
 }
 
-plugins=(
-  aws
-  command-not-found
-  docker
-  docker-compose
-  extract
-  gcloud
-  genpass
-  gh
-  git
-  git-auto-fetch
-  gitignore
-  history
-  jsontools
-  kubectl
-  magic-enter
-  minikube
-  pip
-  rust
-  sudo
-  systemadmin
-  systemd
-  tmux
-  uv
-  web-search
-  zsh-autosuggestions
-  zsh-completions
-  zsh-syntax-highlighting
-  zsh-vi-mode
-)
-
-source "${HOME}/.oh-my-zsh/oh-my-zsh.sh"
-source "${HOME}/.p10k.zsh"
 source "${HOME}/.aliases"
+
+if type -p starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
 if type -p zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
 fi

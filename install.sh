@@ -16,25 +16,6 @@ git_clone_if_needed() {
     fi
 }
 
-install_ohmyzsh() {
-    ZSH="${HOME}/.oh-my-zsh"
-    ZSH_CUSTOM="${ZSH}/custom"
-    ZSH_PLUGINS="${ZSH_CUSTOM}/plugins"
-    ZSH_THEMES="${ZSH_CUSTOM}/themes"
-
-    if [ -d "${ZSH}" ]; then
-        echo "oh-my-zsh already installed at ${ZSH}"
-    else
-        echo "Installing oh-my-zsh at ${ZSH}"
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
-    fi
-    git_clone_if_needed "${ZSH_THEMES}/powerlevel10k" https://github.com/romkatv/powerlevel10k.git
-    git_clone_if_needed "${ZSH_PLUGINS}/zsh-vi-mode" https://github.com/jeffreytse/zsh-vi-mode.git
-    git_clone_if_needed "${ZSH_PLUGINS}/zsh-completions" https://github.com/zsh-users/zsh-completions.git
-    git_clone_if_needed "${ZSH_PLUGINS}/zsh-autosuggestions" https://github.com/zsh-users/zsh-autosuggestions.git
-    git_clone_if_needed "${ZSH_PLUGINS}/zsh-syntax-highlighting" https://github.com/zsh-users/zsh-syntax-highlighting.git
-}
-
 file_link() {
     SRC_FILE="$(realpath ${1})"
     DST_FILE="${2}/$(basename ${SRC_FILE})"
@@ -60,7 +41,6 @@ dir_link() {
 
 git -C "${SCRIPT_DIR}" submodule init
 git -C "${SCRIPT_DIR}" submodule update
-install_ohmyzsh
 dir_link "./zsh"
 dir_link "./home"
 dir_link "./cargo" "${HOME}/.cargo"

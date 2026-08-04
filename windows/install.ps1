@@ -18,12 +18,6 @@ function update_session_path {
     }
 }
 
-function setup_modules {
-    Write-Host "Installing required modules..."
-    Install-Module -AcceptLicense DockerCompletion
-    Install-Module -AcceptLicense DockerComposeCompletion
-}
-
 function setup_winget {
     Write-Host "Setting up winget packages..."
     $winget_src = Join-Path -Path $PSScriptRoot -ChildPath "winget.json"
@@ -106,7 +100,6 @@ function setup_neovim {
 #############################################
 # Main
 #############################################
-setup_modules
 setup_winget  # Must include git for the next step to work
 setup_rust_build_tools
 setup_extra_packages

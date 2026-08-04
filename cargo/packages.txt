@@ -11,6 +11,7 @@ just
 lsd
 prek
 ripgrep
+starship
 tealdeer
 tree-sitter-cli
 uv
