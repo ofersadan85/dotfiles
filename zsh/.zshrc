@@ -15,9 +15,10 @@ tmux_auto_start() {
 
 ZSH_PLUGINS="${HOME}/.config/zsh"
 ZSH_CUSTOM="${ZSH_PLUGINS}/ohmyzsh"
-ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+ZSH_CACHE_DIR="${ZSH_PLUGINS}"
 autoload -Uz is-at-least
 mkdir -p ${ZSH_CACHE_DIR}/completions
+fpath=("${ZSH_PLUGINS}/completions" $fpath) # We're doing compinit later, otherwise: && autoload -Uz compinit && compinit
 
 plugins=(
   command-not-found
