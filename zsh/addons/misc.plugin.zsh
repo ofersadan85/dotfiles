@@ -58,3 +58,7 @@ fi
 alias glog="git log --oneline --decorate --graph"
 alias gs="git status --short --branch --untracked"
 
+alias ..="z .."
+alias ...="z ../.."
+alias ....="z ../../.."
+

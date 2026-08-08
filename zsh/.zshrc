@@ -14,50 +14,13 @@ tmux_auto_start() {
 }
 
 ZSH_PLUGINS="${HOME}/.config/zsh"
-ZSH_CUSTOM="${ZSH_PLUGINS}/ohmyzsh"
-ZSH_CACHE_DIR="${ZSH_PLUGINS}"
-autoload -Uz is-at-least
-mkdir -p ${ZSH_CACHE_DIR}/completions
 fpath=("${ZSH_PLUGINS}/completions" $fpath) # We're doing compinit later, otherwise: && autoload -Uz compinit && compinit
-
-plugins=(
-  command-not-found
-  docker
-  docker-compose
-  extract
-  gh
-  git
-  git-auto-fetch
-  gitignore
-  history
-  jsontools
-  magic-enter
-  rust
-  sudo
-  systemadmin
-  systemd
-  tmux
-  uv
-)
-
-is_plugin() {
-  local base_dir=$1
-  local name=$2
-  builtin test -f $base_dir/plugins/$name/$name.plugin.zsh \
-    || builtin test -f $base_dir/plugins/$name/_$name
-}
-
-# Add all defined plugins to fpath. This must be done
-# before running compinit.
-for plugin ($plugins); do
-  if is_plugin "$ZSH_CUSTOM" "$plugin"; then
-    fpath=("$ZSH_CUSTOM/plugins/$plugin" $fpath)
-    source "$ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh"
-  else
-    echo "[oh-my-zsh] plugin '$plugin' not found in $ZSH -OR- $ZSH_CUSTOM"
-  fi
+for file in "${ZSH_PLUGINS}/addons"/*.plugin.zsh; do
+    # Skip if no files match
+    [[ -e "$file" ]] || continue
+    source "${file}"
 done
-unset plugin
+unset file
 
 # zsh-completions
 fpath=("${ZSH_PLUGINS}/zsh-completions/src" $fpath) && autoload -Uz compinit && compinit
@@ -65,8 +28,6 @@ fpath=("${ZSH_PLUGINS}/zsh-completions/src" $fpath) && autoload -Uz compinit && 
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source "${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-source "${HOME}/.aliases"
 
 if type -p starship &> /dev/null; then
   eval "$(starship init zsh)"
