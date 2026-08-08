@@ -2,11 +2,11 @@ alias lzg=lazygit
 alias lzd=lazydocker
 
 # Updates
-alias update='
+alias update="
     sudo apt update \
     && sudo apt dist-upgrade -y \
     && sudo apt autoremove -y \
-    && sudo apt autoclean'
+    && sudo apt autoclean"
 
 # Docker
 alias dcupdate="docker compose pull && docker compose up -d && docker system prune -f"
