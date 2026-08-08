@@ -56,5 +56,5 @@ fi
 
 # Git
 alias glog="git log --oneline --decorate --graph"
-alias gs="git staus --short --branch --untracked"
+alias gs="git status --short --branch --untracked"
 
