@@ -19,7 +19,7 @@ function WithTiming {
 # PSReadLine
 ############################################
 Set-PSReadLineOption `
-    -EditMode Vi `
+    -EditMode Emacs `
     -MaximumHistoryCount 100kb `
     -PredictionSource HistoryAndPlugin
 

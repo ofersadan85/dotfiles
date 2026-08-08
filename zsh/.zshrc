@@ -13,6 +13,15 @@ tmux_auto_start() {
   fi
 }
 
+ZSH_PLUGINS="${HOME}/.config/zsh"
+
+# zsh-completions
+fpath=("${ZSH_PLUGINS}/zsh-completions/src" $fpath) && autoload -Uz compinit && compinit
+
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+source "${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
 source "${HOME}/.aliases"
 
 if type -p starship &> /dev/null; then
@@ -22,3 +31,5 @@ if type -p zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
+# zsh-syntax-highlighting must be sourced at the end of .zshrc
+source "${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
