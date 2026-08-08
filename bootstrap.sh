@@ -9,6 +9,7 @@ sudo apt update && sudo apt install -y \
     fzf \
     gcc \
     git \
+    gpg \
     python3-pip \
     python3-venv \
     python-is-python3 \
