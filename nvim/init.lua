@@ -114,6 +114,9 @@ vim.keymap.set("n", "<", "<<")
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+-- Visual Block Mode
+vim.keymap.set("n", "vv", "<C-v>", { desc = "Visual Block Mode" })
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.hl.on_yank()`
