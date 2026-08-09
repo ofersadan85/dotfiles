@@ -5,17 +5,6 @@ set -e
 SCRIPT_DIR=$(dirname "${0}")
 GITHUB_USERNAME=ofersadan85
 
-git_clone_if_needed() {
-    TARGET_FOLDER="${1}"
-    GIT_REPO="${2}"
-    if [ -d "${TARGET_FOLDER}" ]; then
-        echo "Folder already exists ${TARGET_FOLDER}"
-    else
-        echo "Cloning to ${TARGET_FOLDER}"
-        git clone --depth=1 "${GIT_REPO}" "${TARGET_FOLDER}"
-    fi
-}
-
 file_link() {
     SRC_FILE="$(realpath ${1})"
     DST_FILE="${2}/$(basename ${SRC_FILE})"
