@@ -1,3 +1,13 @@
+ZSH_PLUGINS="${HOME}/.config/zsh"
+
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+source "${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# zsh-completions
+autoload -Uz compinit  # This is also important for other plugins
+fpath=("${ZSH_PLUGINS}/zsh-completions/src" $fpath) && compinit
+
 # Function to attach to the last tmux session or create a new one
 tmux_auto_start() {
   if command -v tmux &> /dev/null; then
@@ -13,7 +23,6 @@ tmux_auto_start() {
   fi
 }
 
-ZSH_PLUGINS="${HOME}/.config/zsh"
 fpath=("${ZSH_PLUGINS}/completions" $fpath) # We're doing compinit later, otherwise: && autoload -Uz compinit && compinit
 for file in "${ZSH_PLUGINS}/addons"/*.plugin.zsh; do
     # Skip if no files match
@@ -21,13 +30,6 @@ for file in "${ZSH_PLUGINS}/addons"/*.plugin.zsh; do
     source "${file}"
 done
 unset file
-
-# zsh-completions
-fpath=("${ZSH_PLUGINS}/zsh-completions/src" $fpath) && autoload -Uz compinit && compinit
-
-# zsh-autosuggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-source "${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 if type -p starship &> /dev/null; then
   eval "$(starship init zsh)"
