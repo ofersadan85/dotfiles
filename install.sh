@@ -42,7 +42,6 @@ dir_link() {
 git -C "${SCRIPT_DIR}" submodule init
 git -C "${SCRIPT_DIR}" submodule update
 dir_link "./zsh"
-dir_link "./home"
 dir_link "./cargo" "${HOME}/.cargo"
 
 # ~/.local/bin
