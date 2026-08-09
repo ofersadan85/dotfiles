@@ -43,7 +43,7 @@ function reload { . $PROFILE }
 function touch ($path) { if (Test-Path -Path $path) { (Get-Item -Path $path).LastWriteTime = Get-Date } else { New-Item -ItemType File -Path $path | Out-Null } }
 function path { $env:Path -split ';' }
 function glog { git log --oneline --decorate --graph @args }
-function gs { git status --short --branch --untracked @args } 
+function gs { git status --short --branch --untracked @args }
 function dps { docker ps @args }
 function dcu { docker compose up @args }
 function dcd { docker compose down @args }

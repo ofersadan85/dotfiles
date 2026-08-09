@@ -13,7 +13,7 @@ $packagesFile = Join-Path $scriptDir "packages.txt"
 if (Test-Path $packagesFile) {
     # Read non-empty lines
     $packages = Get-Content $packagesFile | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
- 
+
     if ($packages) {
         Write-Host "Installing cargo packages: $packages"
         # We invoke cargo binstall and pass the packages array which PowerShell will expand correctly

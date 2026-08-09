@@ -61,4 +61,3 @@ alias gs="git status --short --branch --untracked"
 alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."
-

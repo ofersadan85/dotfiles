@@ -6,7 +6,7 @@ FROM debian:13-slim
 
 RUN apt update && apt install -y curl sudo dos2unix
 
-COPY bootstrap.sh /bootstrap.sh 
+COPY bootstrap.sh /bootstrap.sh
 ENV DOTFILES_SKIP_CLONE=true
 ENV DOTFILES_SKIP_INSTALL=true
 RUN dos2unix /bootstrap.sh

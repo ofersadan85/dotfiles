@@ -16,4 +16,3 @@ tealdeer
 tree-sitter-cli
 uv
 zoxide
-

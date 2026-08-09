@@ -49,4 +49,3 @@ export TZ="Asia/Jerusalem"
 export EDITOR=nvim
 export GPG_TTY=$(tty)
 export TMUX_THEME="nord"
-

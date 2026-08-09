@@ -6,4 +6,3 @@ build:
 
 test:
   docker run --rm -it -v .:/root/.config dotfiles zsh
-

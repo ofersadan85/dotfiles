@@ -26,4 +26,3 @@ alias uvsu='uv sync --upgrade'
 alias uvtr='uv tree'
 alias uvup='uv self update'
 alias uvv='uv venv'
-

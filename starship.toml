@@ -7,4 +7,3 @@ localip.disabled = false
 memory_usage.disabled = false
 os.disabled = false
 status.disabled = false
-

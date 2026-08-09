@@ -15,4 +15,3 @@ CARGO_PACKAGES=$(tr '\n' ' ' < "${SCRIPT_DIR}/packages.txt")
 if [ -n "${CARGO_PACKAGES}" ]; then
   cargo binstall --no-confirm $CARGO_PACKAGES
 fi
-
