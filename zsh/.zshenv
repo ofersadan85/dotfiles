@@ -5,10 +5,15 @@ export ZDOTDIR="$HOME/.config/zsh"
 export DISABLE_UPDATE_PROMPT="true"
 export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/.zcompdump-${ZSH_VERSION}"
 
-# History management
-export HISTCONTROL=ignoreboth
-export HISTSIZE=5000
-export HISTIGNORE="clear:bg:fg:cd:cd -:cd ..:exit:date:w:* --help:ls:l:ll:lll"
+# History management (zsh)
+export HISTFILE="${ZDOTDIR}/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt HIST_IGNORE_DUPS       # Don't record duplicate consecutive commands
+setopt HIST_IGNORE_SPACE      # Don't record commands starting with a space
+setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks
+setopt INC_APPEND_HISTORY     # Write to HISTFILE immediately, not on shell exit
+setopt SHARE_HISTORY          # Share history across all zsh sessions
 
 # make "less" better
 # X = leave content on-screen

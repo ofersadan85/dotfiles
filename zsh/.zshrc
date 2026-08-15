@@ -1,3 +1,5 @@
+autoload -Uz compinit  # This is needed for plugins
+
 ZSH_PLUGINS="${HOME}/.config/zsh"
 
 # zsh-autosuggestions
@@ -5,7 +7,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source "${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # zsh-completions
-autoload -Uz compinit  # This is also important for other plugins
 fpath=("${ZSH_PLUGINS}/zsh-completions/src" $fpath) && compinit
 
 # Function to attach to the last tmux session or create a new one
