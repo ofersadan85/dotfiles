@@ -23,6 +23,10 @@ setopt SHARE_HISTORY          # Share history across all zsh sessions
 export LESS="-F -X -R"
 export LESSHISTFILE="${HOME}/.cache/less/history"
 
+# Docker
+export COMPOSE_BAKE=true
+export DOCKER_BUILDKIT=1
+
 # Rust
 export CARGO_TARGET_DIR="${HOME}/.cargo/target"
 export CARGO_INCREMENTAL=1
