@@ -1,6 +1,20 @@
 [pull]
-    ff = only
+	ff = only
 	rebase = false
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[rebase]
+	autoStash = true
+[rerere]
+	enabled = true
+[diff]
+	algorithm = histogram
+[merge]
+	conflictStyle = zdiff3
+[branch]
+	sort = -committerdate
 [format]
 	signoff = true
 [commit]
@@ -8,8 +22,12 @@
 [init]
 	defaultBranch = main
 [user]
-    signingkey = D3CC5A5FA79185DE32D6AD63A92DF6E22ACEDD4F
-    name = Ofer Sadan
+	signingkey = D3CC5A5FA79185DE32D6AD63A92DF6E22ACEDD4F
+	name = Ofer Sadan
 	email = ofersadan85@gmail.com
 [help]
 	autocorrect = "immediate"
+[alias]
+	st = status --short --branch
+	lg = log --oneline --decorate --graph
+	undo = reset --soft HEAD~1
