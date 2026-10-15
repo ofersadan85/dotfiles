@@ -34,10 +34,15 @@ export CARGO_INCREMENTAL=1
 # Python
 export PYTHONPYCACHEPREFIX="${HOME}/.cache/pycache"
 
-# NVM
+# NVM (nvm itself is lazy-loaded by addons/nvm.plugin.zsh; here only the newest installed node is put on PATH)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+_nvm_path() {
+  setopt local_options numeric_glob_sort
+  local dirs=("${NVM_DIR}"/versions/node/*(N-/[-1]))
+  [[ -n "${dirs}" ]] && export PATH="${dirs[1]}/bin:${PATH}"
+}
+_nvm_path
+unset -f _nvm_path
 
 # Neovim
 install_neovim() {
@@ -56,5 +61,4 @@ install_neovim() {
 export MAGIC_ENTER_GIT_COMMAND='git status --short --branch --untracked .'
 export TZ="Asia/Jerusalem"
 export EDITOR=nvim
-export GPG_TTY=$(tty)
 export TMUX_THEME="nord"

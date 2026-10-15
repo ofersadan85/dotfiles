@@ -66,21 +66,14 @@ function try_alias {
     param (
         [string]$from,
         [string]$to,
-        [bool]$override = $false,
         [bool]$silent = $false
     )
-    if ((which $from) -and (which $to) -and $override) {
-        Write-Host "Both commands exist: $from and $to. Not creating alias."
+    if (-not (which $to)) {
+        if (-not $silent) { Write-Host "Could not alias: $from -> $to" }
         return $false
     }
-    elseif (which $to) {
-        Set-Alias -Name $from -Value $to -Scope Global -Option AllScope -Force
-        return $true
-    }
-    elseif (!$silent) {
-        Write-Host "Could not alias: $from -> $to"
-        return $false
-    }
+    Set-Alias -Name $from -Value $to -Scope Global -Option AllScope -Force
+    return $true
 }
 
 $null = try_alias grep rg

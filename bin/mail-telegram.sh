@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 #
 # This script will redirect the first mail from the `mail` command to telegram
 # It will also delete the message (!) currently regardless of success or fail

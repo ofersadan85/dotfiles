@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 TELEGRAM_BOT_TOKEN="${1}"
 TELEGRAM_CHAT_ID="${2}"

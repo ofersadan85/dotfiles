@@ -13,7 +13,6 @@ uv/
 
 tmux/plugins/
 
-zsh/.zcompdump
 zsh/.zsh_history
 
 chromium

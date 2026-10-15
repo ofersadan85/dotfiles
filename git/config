@@ -1,3 +1,10 @@
+[core]
+	# Fall back to the default pager / no filter when delta isn't installed (yet)
+	pager = command -v delta > /dev/null && exec delta || exec less
+[interactive]
+	diffFilter = command -v delta > /dev/null && exec delta --color-only || exec cat
+[delta]
+	navigate = true
 [pull]
 	ff = only
 	rebase = false

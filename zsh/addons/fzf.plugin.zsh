@@ -29,3 +29,32 @@ if type -p rg &> /dev/null; then
         ${EDITOR:-nvim} "+$(cut -d: -f2 <<< "${selected}")" "$(cut -d: -f1 <<< "${selected}")"
     }
 fi
+
+# fbr: fuzzy-pick a git branch (local or remote, newest first) and switch to it
+fbr() {
+    local branch
+    branch=$(git branch --all --sort=-committerdate --format='%(refname:short)' \
+        | grep -v 'HEAD' \
+        | fzf --preview 'git log --oneline --graph --color=always -20 {}') || return
+    if [[ "${branch}" == */* ]] && git rev-parse --verify --quiet "refs/remotes/${branch}" > /dev/null; then
+        git switch --track "${branch}"
+    else
+        git switch "${branch}"
+    fi
+}
+
+# fwt: fuzzy-pick a git worktree and cd into it
+fwt() {
+    local dir
+    dir=$(git worktree list | fzf --preview 'git -C {1} log --oneline --color=always -10' | awk '{print $1}') || return
+    [[ -n "${dir}" ]] && cd "${dir}"
+}
+
+# dsh: fuzzy-pick a running container and open a shell in it
+dsh() {
+    local container
+    container=$(docker ps --format '{{.Names}}\t{{.Image}}\t{{.Status}}' \
+        | fzf --delimiter '\t' --header 'Open a shell in container' | cut -f1) || return
+    [[ -n "${container}" ]] || return
+    docker exec -it "${container}" sh -c 'command -v bash > /dev/null && exec bash || exec sh'
+}
