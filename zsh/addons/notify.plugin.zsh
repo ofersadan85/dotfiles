@@ -28,7 +28,7 @@ _notify_precmd() {
     local state="done"
     (( exit_code != 0 )) && state="failed (exit ${exit_code})"
     print -r -- "${HOST}: '${cmd}' ${state} after ${elapsed}s" \
-        | telegram.sh "${TELEGRAM_BOT_TOKEN}" "${TELEGRAM_CHAT_ID}" &> /dev/null &!
+        | telegram.sh &> /dev/null &!
 }
 
 add-zsh-hook preexec _notify_preexec
