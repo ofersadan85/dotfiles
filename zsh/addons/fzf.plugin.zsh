@@ -30,8 +30,8 @@ if type -p rg &> /dev/null; then
     }
 fi
 
-# fbr: fuzzy-pick a git branch (local or remote, newest first) and switch to it
-fbr() {
+# gbr: fuzzy-pick a git branch (local or remote, newest first) and switch to it
+gbr() {
     local branch
     branch=$(git branch --all --sort=-committerdate --format='%(refname:short)' \
         | grep -v 'HEAD' \
@@ -43,8 +43,8 @@ fbr() {
     fi
 }
 
-# fwt: fuzzy-pick a git worktree and cd into it
-fwt() {
+# gwt: fuzzy-pick a git worktree and cd into it
+gwt() {
     local dir
     dir=$(git worktree list | fzf --preview 'git -C {1} log --oneline --color=always -10' | awk '{print $1}') || return
     [[ -n "${dir}" ]] && cd "${dir}"
